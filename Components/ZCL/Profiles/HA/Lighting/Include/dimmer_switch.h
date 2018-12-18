@@ -74,6 +74,9 @@ extern "C" {
 #ifdef CLD_ELECTRICAL_MEASUREMENT
 	#include "ElectricalMeasurement.h"
 #endif
+#ifdef CLD_HH_DOORLOCK
+    #include "hh_doorlock.h"
+#endif
 /****************************************************************************/
 /***        Macro Definitions                                             ***/
 /****************************************************************************/
@@ -116,8 +119,8 @@ typedef struct
 #endif
 
     /* Mandatory client clusters */
-#if (defined CLD_ONOFF) && (defined ONOFF_CLIENT)
-    tsZCL_ClusterInstance sOnOffClient;
+#if (defined CLD_ONOFF) && (defined ONOFF_SERVER)
+    tsZCL_ClusterInstance sOnOffServer;
 #endif
 
 #if (defined CLD_LEVEL_CONTROL) && (defined LEVEL_CONTROL_CLIENT)
@@ -159,6 +162,10 @@ typedef struct
 
 #if (defined CLD_ELECTRICAL_MEASUREMENT && defined ELECTRICAL_MEASUREMENT_SERVER)
     tsZCL_ClusterInstance sElectricalMeasurementServer;
+#endif
+
+#if (defined CLD_HH_DOORLOCK) && (defined HH_DOORLOCK_SERVER)
+    tsZCL_ClusterInstance sHhDoorLockServer;
 #endif
 } tsHA_DimmerSwitchDeviceClusterInstances;
 
@@ -251,6 +258,15 @@ typedef struct
 #endif
 #if (defined CLD_ELECTRICAL_MEASUREMENT && defined ELECTRICAL_MEASUREMENT_SERVER)
         tsCLD_ElectricalMeasurement sCLD_ElectricalMeasurement;
+#endif
+#if (defined CLD_ONOFF) && (defined ONOFF_SERVER)
+    /* On/Off Cluster - Server */
+    tsCLD_OnOff sOnOffServerCluster;
+    tsCLD_OnOffCustomDataStructure     sOnOffServerCustomDataStructure;
+#endif
+
+#if (defined CLD_HH_DOORLOCK) && (defined HH_DOORLOCK_SERVER)
+    tsCLD_HhDoorLock sHhDoorLockServerCluster;
 #endif
 } tsHA_DimmerSwitchDevice;
 

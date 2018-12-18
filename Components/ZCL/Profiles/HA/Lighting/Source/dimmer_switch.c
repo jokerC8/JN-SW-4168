@@ -196,14 +196,25 @@ PUBLIC teZCL_Status eHA_RegisterDimmerSwitchEndPoint(uint8 u8EndPointIdentifier,
 #endif
 
     /* Mandatory client clusters */
-#if (defined CLD_ONOFF) && (defined ONOFF_CLIENT)
-    /* Create an instance of an On/Off cluster as a client */
-    eCLD_OnOffCreateOnOff(&psDeviceInfo->sClusterInstance.sOnOffClient,
-                          FALSE,
-                          &sCLD_OnOff,
-                          NULL,
-                          NULL,
-                          NULL);
+#if (defined CLD_ONOFF) && (defined ONOFF_SERVER)
+/* Create an instance of a On/Off cluster as a server */
+eCLD_OnOffCreateOnOff(&psDeviceInfo->sClusterInstance.sOnOffServer,
+					  TRUE,
+					  &sCLD_OnOff,
+					  &psDeviceInfo->sOnOffServerCluster,
+					  &au8OnOffServerAttributeControlBits[0],
+					  &psDeviceInfo->sOnOffServerCustomDataStructure);
+
+#endif
+
+#if (defined CLD_HH_DOORLOCK) && (defined HH_DOORLOCK_SERVER)
+/* Create an instance of a doorlock cluster as a server */
+eCLD_DoorLockCreateHhDoorLock(&psDeviceInfo->sClusterInstance.sHhDoorLockServer,
+					  TRUE,
+					  &sCLD_HhDoorLockCluster,
+					  &psDeviceInfo->sHhDoorLockServerCluster,
+					  &au8HhDoorLockServerAttributeControlBits[0]);
+
 #endif
 
 #if (defined CLD_LEVEL_CONTROL) && (defined LEVEL_CONTROL_CLIENT)
