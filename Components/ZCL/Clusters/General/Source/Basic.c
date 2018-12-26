@@ -101,11 +101,11 @@
     #endif
 
     #ifdef CLD_BAS_ATTR_MANUFACTURER_NAME
-        {E_CLD_BAS_ATTR_ID_MANUFACTURER_NAME,       (E_ZCL_AF_RD|E_ZCL_AF_RP),  E_ZCL_CSTRING,  (uint32)(&((tsCLD_Basic*)(0))->sManufacturerName),0},
+        {E_CLD_BAS_ATTR_ID_MANUFACTURER_NAME,       (E_ZCL_AF_RD),              E_ZCL_CSTRING,  (uint32)(&((tsCLD_Basic*)(0))->sManufacturerName),0},
     #endif
 
     #ifdef CLD_BAS_ATTR_MODEL_IDENTIFIER
-        {E_CLD_BAS_ATTR_ID_MODEL_IDENTIFIER,        E_ZCL_AF_RD,                E_ZCL_CSTRING,  (uint32)(&((tsCLD_Basic*)(0))->sModelIdentifier),0},
+        {E_CLD_BAS_ATTR_ID_MODEL_IDENTIFIER,        E_ZCL_AF_RD|E_ZCL_AF_RP,    E_ZCL_CSTRING,  (uint32)(&((tsCLD_Basic*)(0))->sModelIdentifier),0},
     #endif
 
     #ifdef CLD_BAS_ATTR_DATE_CODE
